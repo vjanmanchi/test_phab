@@ -1,0 +1,23 @@
+version: 2
+
+notify:
+  webhooks:
+    - url: https://phabricator.metavision.com/harbormaster/hook/circleci/
+    
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
+      - image: circleci/python:3.6.1
+
+    steps:
+      - checkout
+
+      - run:
+          name: run tests
+          command: python test.py
+
+      - run:
+          name: run echo test
+          command: echo "Hello Vish"
